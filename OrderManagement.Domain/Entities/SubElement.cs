@@ -1,6 +1,4 @@
-﻿using OrderManagement.Domain.Common;
-
-namespace OrderManagement.Domain.Entities
+﻿namespace OrderManagement.Domain.Entities
 {
     public class SubElement : BaseEntity
     {
