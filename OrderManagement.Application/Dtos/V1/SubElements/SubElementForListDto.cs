@@ -1,6 +1,8 @@
-﻿namespace OrderManagement.Domain.Entities
+﻿using OrderManagement.Application.Dtos.V1.Common;
+
+namespace OrderManagement.Application.Dtos.V1.SubElements
 {
-    public class SubElement : BaseEntity
+    public class SubElementForListDto: BaseEntityDto
     {
         public int Element { get; set; }
 
@@ -9,9 +11,6 @@
         public float Width { get; set; }
 
         public float Height { get; set; }
-
-        public int WindowId { get; set; }
-
-        public Window Window { get; set; }
+        
     }
 }
