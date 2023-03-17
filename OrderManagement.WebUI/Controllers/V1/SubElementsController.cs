@@ -5,8 +5,7 @@ namespace OrderManagement.WebUI.Controllers.V1
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class SubElementsController : ControllerBase
     {
-
     }
 }
