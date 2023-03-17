@@ -6,8 +6,10 @@ global using OrderManagement.Infrastructure.Persistence.Repositories;
 
 
 global using OrderManagement.Application.Dtos.V1.Common;
+global using OrderManagement.Application.Dtos.V1.Order;
 global using OrderManagement.Application.Dtos.V1.Window;
 global using OrderManagement.Application.Dtos.V1.SubElement;
+global using OrderManagement.Application.Validators.Order;
 global using OrderManagement.Application.Validators.Window;
 global using OrderManagement.Application.Validators.SubElement;
 

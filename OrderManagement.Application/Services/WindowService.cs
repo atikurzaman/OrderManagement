@@ -56,7 +56,7 @@ namespace OrderManagement.Application.Services
             if (validationResult.IsValid == false)
             {
                 response.Success = false;
-                response.Message = "Creation Failed";
+                response.Message = "Updating Failed";
                 response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
                 return response;
             }
@@ -64,7 +64,7 @@ namespace OrderManagement.Application.Services
             var windowToUpdate = _mapper.Map<Window>(windowForUpdateDto);
             var result = await _windowRepository.UpdateWindowAsync(windowToUpdate);
             response.Success = true;
-            response.Message = "Creation Successful";
+            response.Message = "Updating Successful";
             return response;
         }
 

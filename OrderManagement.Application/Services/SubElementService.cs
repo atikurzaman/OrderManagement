@@ -56,7 +56,7 @@ namespace OrderManagement.Application.Services
             if (validationResult.IsValid == false)
             {
                 response.Success = false;
-                response.Message = "Creation Failed";
+                response.Message = "Updating Failed";
                 response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
                 return response;
             }
@@ -64,7 +64,7 @@ namespace OrderManagement.Application.Services
             var subElementToUpdate = _mapper.Map<SubElement>(subElementForUpdateDto);
             var result = await _subElementRepository.UpdateSubElementAsync(subElementToUpdate);
             response.Success = true;
-            response.Message = "Creation Successful";
+            response.Message = "Updating Successful";
             return response;
         }
 

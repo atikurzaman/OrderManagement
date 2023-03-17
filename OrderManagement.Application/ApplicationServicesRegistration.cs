@@ -9,6 +9,7 @@ namespace OrderManagement.Application
         {
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IWindowService, WindowService>();
             services.AddScoped<ISubElementService, SubElementService>();
 
