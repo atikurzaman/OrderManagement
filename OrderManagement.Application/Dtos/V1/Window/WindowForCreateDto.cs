@@ -1,8 +1,6 @@
-﻿using OrderManagement.Application.Dtos.V1.Common;
-
-namespace OrderManagement.Application.Dtos.V1.Windows
+﻿namespace OrderManagement.Application.Dtos.V1.Window
 {
-    public class WindowForUpdateDto:BaseEntityDto
+    public class WindowForCreateDto
     {
         public string Name { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace OrderManagement.Application.Dtos.V1.Orders
+﻿namespace OrderManagement.Application.Dtos.V1.Order
 {
     public class OrderForCreateDto
     {

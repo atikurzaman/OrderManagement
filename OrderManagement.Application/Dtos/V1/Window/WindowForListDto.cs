@@ -1,6 +1,6 @@
 ﻿using OrderManagement.Application.Dtos.V1.Common;
 
-namespace OrderManagement.Application.Dtos.V1.Windows
+namespace OrderManagement.Application.Dtos.V1.Window
 {
     public class WindowForListDto:BaseEntityDto
     {

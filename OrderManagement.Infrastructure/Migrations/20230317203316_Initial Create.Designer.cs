@@ -11,7 +11,7 @@ using OrderManagement.Infrastructure.Persistence;
 namespace OrderManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20230317114919_Initial Create")]
+    [Migration("20230317203316_Initial Create")]
     partial class InitialCreate
     {
         /// <inheritdoc />

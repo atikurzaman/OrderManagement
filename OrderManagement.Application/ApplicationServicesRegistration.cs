@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using OrderManagement.Application.Mapping;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace OrderManagement.Application
@@ -11,6 +9,9 @@ namespace OrderManagement.Application
         {
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddScoped<IWindowService, WindowService>();
+            services.AddScoped<ISubElementService, SubElementService>();
+
             return services;
         }
     }

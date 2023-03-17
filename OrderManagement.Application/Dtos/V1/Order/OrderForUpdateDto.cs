@@ -1,6 +1,6 @@
 ﻿using OrderManagement.Application.Dtos.V1.Common;
 
-namespace OrderManagement.Application.Dtos.V1.Orders
+namespace OrderManagement.Application.Dtos.V1.Order
 {
     public class OrderForUpdateDto:BaseEntityDto
     {

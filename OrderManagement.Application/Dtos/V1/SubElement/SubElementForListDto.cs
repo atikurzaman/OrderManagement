@@ -1,8 +1,8 @@
 ﻿using OrderManagement.Application.Dtos.V1.Common;
 
-namespace OrderManagement.Application.Dtos.V1.SubElements
+namespace OrderManagement.Application.Dtos.V1.SubElement
 {
-    public class SubElementForUpdateDto: BaseEntityDto
+    public class SubElementForListDto: BaseEntityDto
     {
         public int Element { get; set; }
 
@@ -11,5 +11,8 @@ namespace OrderManagement.Application.Dtos.V1.SubElements
         public float Width { get; set; }
 
         public float Height { get; set; }
+
+        public int WindowId { get; set; }
+
     }
 }

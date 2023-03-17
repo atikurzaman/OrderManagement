@@ -15,9 +15,9 @@ namespace OrderManagement.Infrastructure
                  b => b.MigrationsAssembly(typeof(OrderDbContext).Assembly.FullName)
                 ));
 
-            services.AddScoped<ISubElementRepository, SubElementRepository>();
-            services.AddScoped<IWindowRepository, WindowRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddTransient<ISubElementRepository, SubElementRepository>();
+            services.AddTransient<IWindowRepository, WindowRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
             return services;
         }
