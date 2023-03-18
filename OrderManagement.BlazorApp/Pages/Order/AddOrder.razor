@@ -9,18 +9,20 @@
     <h3 class="text-center">Add Order</h3>
 </div>
 
-<EditForm Model="order" OnValidSubmit="OnValidSubmit">
-
+<EditForm Model="@order" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
     <div class="form-group">
         <label for="name">Name</label>
         <div>
-            <InputText class="form-control" id="name" @bind-Value="@order.Name" />
+            <InputText class="form-control" id="name" @bind-Value="order.Name" />
+            <ValidationMessage For="(() => order.Name)"></ValidationMessage>
         </div>
     </div>
     <div class="form-group">
-        <label for="name">State</label>
+        <label for="state">State</label>
         <div>
-            <InputText class="form-control" id="state" @bind-Value="@order.State" />
+            <InputText class="form-control" id="state" @bind-Value="order.State" />
+            <ValidationMessage For="(() => order.State)"></ValidationMessage>
         </div>
     </div>
 

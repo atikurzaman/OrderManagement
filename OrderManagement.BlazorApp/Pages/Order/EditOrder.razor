@@ -9,18 +9,18 @@
     <h3 class="text-center">Edit Order</h3>
 </div>
 
-<EditForm Model="order" OnValidSubmit="OnValidSubmit">
+<EditForm Model="@order" OnValidSubmit="OnValidSubmit">
 
     <div class="form-group">
         <label for="name">Name</label>
         <div>
-            <InputText class="form-control" id="name" @bind-Value="@order.Name" />
+            <InputText class="form-control" id="name" @bind-Value="order.Name" />
         </div>
     </div>
     <div class="form-group">
-        <label for="name">State</label>
+        <label for="state">State</label>
         <div>
-            <InputText class="form-control" id="state" @bind-Value="@order.State" />
+            <InputText class="form-control" id="state" @bind-Value="order.State" />
         </div>
     </div>
 
