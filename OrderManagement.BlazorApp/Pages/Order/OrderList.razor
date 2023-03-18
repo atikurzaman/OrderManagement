@@ -1,6 +1,7 @@
 ﻿@page "/orders"
 @inject HttpClient http
 @inject NavigationManager navigationManager
+@inject NotificationService notificationService
 
 <PageTitle>Orders</PageTitle>
 
@@ -29,7 +30,7 @@ else
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Order" Title="Delete">                
                 <Template Context="order">
-                    <a @onclick="(() => onDeleteClick(order.Id))">Edit</a>                    
+                    <a @onclick="(() => onDeleteClick(order.Id))" href="">Delete</a>                    
                 </Template>
             </RadzenDataGridColumn>
         </Columns>
@@ -51,9 +52,19 @@ else
         await getOrders();
     }    
 
-    private void onDeleteClick(int orderId)
+    private async Task onDeleteClick(int orderId)
     {
-        
+        var response =  await http.DeleteAsync($"orders/{orderId}");       
+
+        if (response.IsSuccessStatusCode)
+        {
+            notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Success, Summary = "Success", Detail = "Order has been deleted successfully." });
+            navigationManager.NavigateTo("orders");
+        }
+        else
+        {
+            notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Error, Summary = "Error", Detail = "Failed to delete order." });
+        }
     }
 
 }
