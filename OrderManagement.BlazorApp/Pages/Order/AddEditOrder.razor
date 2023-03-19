@@ -4,37 +4,38 @@
 @inject NavigationManager navigationManager
 @inject NotificationService notificationService
 
-<PageTitle>Add Order</PageTitle>
+<PageTitle>@pageTitle</PageTitle>
 
 <div class="row mb-3">
     <div class="col-md-12">
-        <h3>Add Order</h3>
+        <h3>@pageTitle</h3>
     </div>
 </div>
 
 <EditForm Model="@order" OnValidSubmit="OnValidSubmit">
-    <DataAnnotationsValidator />
+    <ObjectGraphDataAnnotationsValidator />
 
     <div class="row">
 
         <div class="col-md-6">
             <div class="form-group">
                 <label for="name">Name</label>
-                <InputText class="form-control" id="name" @bind-Value="order.Name" />
+                <InputText class="form-control" id="name" @bind-Value="order.Name" placeholder="Name" />
                 <ValidationMessage For="(() => order.Name)"></ValidationMessage>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="state">State</label>
-                <InputText class="form-control" id="state" @bind-Value="order.State" />
+                <InputText class="form-control" id="state" @bind-Value="order.State" placeholder="State" />
                 <ValidationMessage For="(() => order.State)"></ValidationMessage>
             </div>
         </div>
 
         <div class="col-md-12 mt-3">
-            <button class="btn btn-primary" type="submit">Save</button>
+            <a class="btn btn-secondary" type="button" href="orders">Back</a>
             <button class="btn btn-secondary" type="button" @onclick="clear">Clear</button>
+            <button class="btn btn-primary" type="submit">Save</button>
         </div>
 
         <div class="row">
@@ -54,18 +55,21 @@
                             <div class="form-group form-inline">
                                 <label>Name:</label>
                                 <InputText class="form-control" @bind-Value="window.Name" placeholder="Name" />
+                                <ValidationMessage For="(() => window.Name)"></ValidationMessage>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-inline">
                                 <label for="">Quantity Of Windows:</label>
                                 <InputNumber class="form-control" @bind-Value="window.QuantityOfWindows" placeholder="Quantity Of Windows" />
+                                <ValidationMessage For="(() => window.QuantityOfWindows)"></ValidationMessage>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="">Total Sub Elements:</label>
-                                <InputNumber class="form-control" @bind-Value="window.TotalSubElements" />
+                                <InputNumber class="form-control" @bind-Value="window.TotalSubElements" placeholder="Total Sub Elements" />
+                                <ValidationMessage For="(() => window.TotalSubElements)"></ValidationMessage>
                             </div>
                         </div>
                         <div class="col-md-3 mt-4">
@@ -93,25 +97,29 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="">Element:</label>
-                                            <InputNumber class="form-control" @bind-Value="subElement.Element" />
+                                            <InputNumber class="form-control" @bind-Value="subElement.Element" placeholder="Element"/>
+                                            <ValidationMessage For="(() => subElement.Element)"></ValidationMessage>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="@i">Type:</label>
-                                            <InputText class="form-control" id="@i" @bind-Value="subElement.Type" />
+                                            <InputText class="form-control" id="@i" @bind-Value="subElement.Type" placeholder="Type"/>
+                                            <ValidationMessage For="(() => subElement.Type)"></ValidationMessage>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="">Height:</label>
-                                            <InputNumber class="form-control" @bind-Value="subElement.Height" />
+                                            <InputNumber class="form-control" @bind-Value="subElement.Height" placeholder="Height"/>
+                                            <ValidationMessage For="(() => subElement.Height)"></ValidationMessage>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="">Width:</label>
-                                            <InputNumber class="form-control" @bind-Value="subElement.Width" />
+                                            <InputNumber class="form-control" @bind-Value="subElement.Width" placeholder="Width"/>
+                                            <ValidationMessage For="(() => subElement.Width)"></ValidationMessage>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -136,6 +144,8 @@
 
     [Parameter] public int? Id { get; set; }
 
+    private string pageTitle = string.Empty;
+
     private Order order = new Order();
 
     private async Task getOrderById(int id)
@@ -147,7 +157,12 @@
     {
         if (Id != null)
         {
+            pageTitle = "Edit Order";
             await getOrderById(Id.Value);
+        }
+        else
+        {
+            pageTitle = "Add Order";
         }
     }
 

@@ -14,6 +14,7 @@ namespace OrderManagement.BlazorApp.Models
         [StringLength(256, ErrorMessage = "State must not exceed 256 characters")]
         public string State { get; set; } = String.Empty;
 
+        [ValidateComplexType]
         public List<Window>? Windows { get; set; } = new List<Window>();
     }
 }
