@@ -16,5 +16,7 @@ namespace OrderManagement.BlazorApp.Models
 
         [Required]
         public int OrderId { get; set; }
+        
+        public List<SubElement> SubElements { get; set; } = new List<SubElement>();
     }
 }
