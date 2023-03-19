@@ -7,5 +7,7 @@ namespace OrderManagement.Application.Dtos.V1.Order
         public string Name { get; set; }
 
         public string State { get; set; }
+
+        public List<WindowForUpdateDto> Windows { get; set; }
     }
 }

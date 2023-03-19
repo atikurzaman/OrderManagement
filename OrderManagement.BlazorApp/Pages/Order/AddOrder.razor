@@ -153,17 +153,35 @@
 
     protected async Task OnValidSubmit()
     {
-        var response = await http.PostAsJsonAsync("orders", order);
-        var body = await response.Content.ReadAsStringAsync();
-
-        if (response.IsSuccessStatusCode)
+        if (Id == null)
         {
-            notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Success, Summary = "Success", Detail = "Order has been saved successfully." });
-            navigationManager.NavigateTo("orders");
+            var response = await http.PostAsJsonAsync("orders", order);
+            var body = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Success, Summary = "Success", Detail = "Order has been saved successfully." });
+                navigationManager.NavigateTo("orders");
+            }
+            else
+            {
+                notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Error, Summary = "Error", Detail = "Failed to save order." });
+            }
         }
         else
         {
-            notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Error, Summary = "Error", Detail = "Failed to save order." });
+            var response = await http.PutAsJsonAsync("orders", order);
+            var body = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Success, Summary = "Success", Detail = "Order has been updated successfully." });
+                navigationManager.NavigateTo("orders");
+            }
+            else
+            {
+                notificationService.Notify(new NotificationMessage() { Severity = NotificationSeverity.Error, Summary = "Error", Detail = "Failed to update order." });
+            }
         }
     }
 

@@ -32,6 +32,39 @@ namespace OrderManagement.Infrastructure.Persistence.Repositories
         public async Task<int> UpdateOrderAsync(Order order)
         {
             _context.Entry(order).State = EntityState.Modified;
+
+            foreach (var window in order.Windows)
+            {
+                if (window.Id != 0)
+                {
+                    _context.Entry(window).State = EntityState.Modified;
+                }
+                else
+                {
+                    _context.Entry(window).State = EntityState.Added;
+                }
+
+                foreach (var subElement in window.SubElements)
+                {
+                    if (subElement.Id != 0)
+                    {
+                        _context.Entry(subElement).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        _context.Entry(subElement).State = EntityState.Added;
+                    }
+
+                    var idsOfSubElements = window.SubElements.Select(w => w.Id).ToList();
+                    var subElementsToDelete = await _context.SubElements.Where(w => !idsOfSubElements.Contains(w.Id) && w.WindowId == window.Id).ToListAsync();
+                    _context.RemoveRange(subElementsToDelete);
+                }
+            }
+
+            var idsOfWindows = order.Windows.Select(w => w.Id).ToList();
+            var windowsToDelete = await _context.Windows.Where(w => !idsOfWindows.Contains(w.Id) && w.OrderId == order.Id).ToListAsync();
+            _context.RemoveRange(windowsToDelete);
+
             return await _context.SaveChangesAsync();
         }
 
