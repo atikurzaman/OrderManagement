@@ -26,37 +26,45 @@
         </div>
     </div>
 
-    @* <div class="form-group">
     <div class="form-group">
-    <button type="button" class="btn btn-secondary"
-    @onclick="@(() => student.Addresses.Add(new Address()))">
-    Add Address
-    </button>
+        <div class="form-group mt-3 mb-3">
+            <button type="button" class="btn btn-secondary"
+                    @onclick="@(() => order.Windows?.Add(new Window()))">
+                Add Window
+            </button>
+        </div>
+
+        @for (var i = 0; i < order.Windows?.Count; i++)
+        {
+            var index = i;
+            var window = order.Windows[i];
+
+            <h5>Window @(i+1)</h5>
+
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label for="@i">Name:</label>
+                    <InputText class="form-control" id="@i" @bind-Value="window.Name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="">Quantity Of Windows:</label>
+                    <InputNumber class="form-control" @bind-Value="window.QuantityOfWindows" />
+                </div>
+                <div class="form-group">
+                    <label for="">Total Sub Elements:</label>
+                    <InputNumber class="form-control" @bind-Value="window.TotalSubElements" />
+                </div>
+
+                <div class="form-group mt-3 mb-3">
+                    <button type="button" class="btn btn-danger"
+                        @onclick="@(() => order.Windows.RemoveAt(index))">
+                        Remove
+                    </button>
+                </div>
+            </form>
+        }
     </div>
-
-    @for (var i = 0; i < student.Addresses.Count; i++)
-    {
-    var index = i;
-    var address = student.Addresses[i];
-
-    <h5>Address @(i+1)</h5>
-
-    <div class="form-group">
-    <label>Street:</label>
-    <InputText class="form-control" @bind-Value="address.Street" />
-    </div>
-
-    <div class="form-group">
-    <label>City:</label>
-    <InputText class="form-control" @bind-Value="address.City" />
-    </div>
-
-    <button type="button" class="btn btn-danger"
-    @onclick="@(() => student.Addresses.RemoveAt(index))">
-    Remove
-    </button>
-    }
-    </div>*@
 
     <div class="form-group mt-3">
         <button class="btn btn-primary" type="submit">Save</button>
