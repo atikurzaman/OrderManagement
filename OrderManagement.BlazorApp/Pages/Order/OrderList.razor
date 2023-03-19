@@ -5,12 +5,16 @@
 
 <PageTitle>Orders</PageTitle>
 
-<div class="form-group mb-3">
-    <h3 class="text-center">Orders</h3>
+<div class="row mb-3">
+    <div class="col-md-12"> 
+        <h3 class="text-center">Orders</h3>
+    </div>
 </div>
 
-<div class="form-group mb-3">
-    <a class="btn btn-success" href="order/add-edit">New Order</a>
+<div class="row mb-3">
+    <div class="col-md-12"> 
+        <a class="btn btn-success" href="order/add-edit">New Order</a>
+    </div>
 </div>
 
 @if (orders == null)
@@ -23,14 +27,14 @@ else
         <Columns>
             <RadzenDataGridColumn TItem="Order" Property="Name" Title="Name"></RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Order" Property="State" Title="State"></RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Order" Title="Edit">
+            <RadzenDataGridColumn TItem="Order" Title="Edit" Sortable="false" Filterable=false TextAlign="TextAlign.Center">
                 <Template Context="order">
-                    <a href="order/add-edit/@order.Id">Edit</a>                    
-                </Template>                
+                    <a href="order/add-edit/@order.Id" class="btn btn-secondary">Edit</a>
+                </Template>
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="Order" Title="Delete">                
+            <RadzenDataGridColumn TItem="Order" Title="Delete" Sortable="false" Filterable=false TextAlign="TextAlign.Center">
                 <Template Context="order">
-                    <a @onclick="(() => onDeleteClick(order.Id))" href="">Delete</a>                    
+                    <a @onclick="(() => onDeleteClick(order.Id))" href="" class="btn btn-danger">Delete</a>
                 </Template>
             </RadzenDataGridColumn>
         </Columns>
@@ -50,11 +54,11 @@ else
     protected override async Task OnInitializedAsync()
     {
         await getOrders();
-    }    
+    }
 
     private async Task onDeleteClick(int orderId)
     {
-        var response =  await http.DeleteAsync($"orders/{orderId}");       
+        var response = await http.DeleteAsync($"orders/{orderId}");
 
         if (response.IsSuccessStatusCode)
         {
