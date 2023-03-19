@@ -14,7 +14,7 @@ namespace OrderManagement.Infrastructure.Persistence.Repositories
 
         public async Task<Order> GetOrderByIdAsync(int id)
         {
-            return await _context.Orders.FindAsync(id);
+            return await _context.Orders.Include(w => w.Windows).ThenInclude(s => s.SubElements).FirstOrDefaultAsync(o => o.Id == id); ;
         }
 
         public async Task<IEnumerable<Order>> GetOrdersAsync()

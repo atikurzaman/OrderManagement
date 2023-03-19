@@ -10,7 +10,7 @@
 </div>
 
 <div class="form-group mb-3">
-    <a class="btn btn-success" href="order/add">New Order</a>
+    <a class="btn btn-success" href="order/add-edit">New Order</a>
 </div>
 
 @if (orders == null)
@@ -25,7 +25,7 @@ else
             <RadzenDataGridColumn TItem="Order" Property="State" Title="State"></RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Order" Title="Edit">
                 <Template Context="order">
-                    <a href="order/edit/@order.Id">Edit</a>                    
+                    <a href="order/add-edit/@order.Id">Edit</a>                    
                 </Template>                
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="Order" Title="Delete">                

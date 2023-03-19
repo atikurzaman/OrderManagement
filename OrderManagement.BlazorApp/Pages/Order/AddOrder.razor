@@ -1,4 +1,5 @@
-﻿@page "/order/add"
+﻿@page "/order/add-edit"
+@page "/order/add-edit/{Id:int}"
 @inject HttpClient http
 @inject NavigationManager navigationManager
 @inject NotificationService notificationService
@@ -133,7 +134,22 @@
 
 @code {
 
+    [Parameter] public int? Id { get; set; }
+
     private Order order = new Order();
+
+    private async Task getOrderById(int id)
+    {
+        order = await http.GetFromJsonAsync<Order>($"orders/{id}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != null)
+        {
+            await getOrderById(Id.Value);
+        }
+    }
 
     protected async Task OnValidSubmit()
     {
