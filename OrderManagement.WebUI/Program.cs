@@ -1,5 +1,6 @@
 using OrderManagement.Application;
 using OrderManagement.Infrastructure;
+using OrderManagement.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.AddCors(o =>
 
 
 var app = builder.Build();
+
+SeedData.PopulateDb(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
