@@ -34,30 +34,28 @@
         </div>
 
         <div class="row">
-
             <div class="col-md-12 mt-3 mb-3">
                 <button type="button" class="btn btn-secondary"
                         @onclick="@(() => order.Windows?.Add(new Window()))">
                     Add Window
                 </button>
             </div>
-            <div class="col-md-12 mt-3 mb-3">
-                @for (var i = 0; i < order.Windows?.Count; i++)
-                {
-                    var index = i;
-                    var window = order.Windows[i];
-                    @*<h5 class="text-center">Window @(i+1)</h5>*@
+            @for (var i = 0; i < order.Windows?.Count; i++)
+            {
+                var windowIndex = i;
+                var window = order.Windows[i];
+                <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="@i">Name:</label>
-                                <InputText class="form-control" id="@i" @bind-Value="window.Name" />
+                            <div class="form-group form-inline">
+                                <label>Name:</label>
+                                <InputText class="form-control" @bind-Value="window.Name" placeholder="Name" />
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group form-inline">
                                 <label for="">Quantity Of Windows:</label>
-                                <InputNumber class="form-control" @bind-Value="window.QuantityOfWindows" />
+                                <InputNumber class="form-control" @bind-Value="window.QuantityOfWindows" placeholder="Quantity Of Windows" />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -66,72 +64,71 @@
                                 <InputNumber class="form-control" @bind-Value="window.TotalSubElements" />
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-danger" style="margin-top:22px;"
-                                @onclick="@(() => order.Windows.RemoveAt(index))">
-                                Remove
+                        <div class="col-md-3 mt-4">
+                            <button type="button" class="btn btn-danger"
+                                @onclick="@(() => order.Windows.RemoveAt(windowIndex))">
+                                Remove Window
                             </button>
                         </div>
+                    </div>
 
-                        <div class="row mt-3 mb-3">
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-secondary"
-                                    @onclick="@(() => window.SubElements?.Add(new SubElement()))">
-                                    Add Sub Element
-                                </button>
-                            </div>
-                            <div class="col-md-9">                                
-                                @for (int j = 0; j < window?.SubElements?.Count; j++)
-                                {
-                                    <h1>@j</h1>
-                                    var subElementIndex = j;
-                                    var subElement = window?.SubElements[j];
-                                    
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="">Element:</label>
-                                                <InputNumber class="form-control" @bind-Value="subElement.Element" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="@i">Type:</label>
-                                                <InputText class="form-control" id="@i" @bind-Value="subElement.Type" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="">Height:</label>
-                                                <InputNumber class="form-control" @bind-Value="subElement.Height" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="">Width:</label>
-                                                <InputNumber class="form-control" @bind-Value="subElement.Width" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-danger" style="margin-top:22px;"
-                                            @onclick="@(() => window?.SubElements.RemoveAt(subElementIndex))">
-                                                Remove
-                                            </button>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-secondary" style="float:right"
+                                @onclick="@(() => window.SubElements?.Add(new SubElement()))">
+                                Add Sub Element
+                            </button>
+                        </div>
+                        <div class="col-md-9 mt-5">
+                            @for (int j = 0; j < window?.SubElements?.Count; j++)
+                            {
+                                var subElementIndex = j;
+                                var subElement = window?.SubElements[j];
+
+                                <div class="row mb-2">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="">Element:</label>
+                                            <InputNumber class="form-control" @bind-Value="subElement.Element" />
                                         </div>
                                     </div>
-                                }
-                            </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="@i">Type:</label>
+                                            <InputText class="form-control" id="@i" @bind-Value="subElement.Type" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="">Height:</label>
+                                            <InputNumber class="form-control" @bind-Value="subElement.Height" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="">Width:</label>
+                                            <InputNumber class="form-control" @bind-Value="subElement.Width" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-danger" style="margin-top:22px;"
+                                        @onclick="@(() => window?.SubElements.RemoveAt(subElementIndex))">
+                                            Remove Sub Element
+                                        </button>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
-                }
-            </div>
-        </div>
 
-        <div class="form-group mt-3">
-            <button class="btn btn-primary" type="submit">Save</button>
-            <button class="btn btn-secondary" type="button" @onclick="clear">Clear</button>
+                </div>
+            }
         </div>
+    </div>
 
+    <div class="form-group mt-3">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-secondary" type="button" @onclick="clear">Clear</button>
     </div>
 
 </EditForm>
