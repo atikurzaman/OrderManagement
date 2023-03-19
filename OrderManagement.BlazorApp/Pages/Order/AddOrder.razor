@@ -5,8 +5,10 @@
 
 <PageTitle>Add Order</PageTitle>
 
-<div class="form-group mb-3">
-    <h3 class="text-center">Add Order</h3>
+<div class="row mb-3">
+    <div class="col-md-12">
+        <h3>Add Order</h3>
+    </div>
 </div>
 
 <EditForm Model="@order" OnValidSubmit="OnValidSubmit">
@@ -17,20 +19,21 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="name">Name</label>
-                <div>
-                    <InputText class="form-control" id="name" @bind-Value="order.Name" />
-                    <ValidationMessage For="(() => order.Name)"></ValidationMessage>
-                </div>
+                <InputText class="form-control" id="name" @bind-Value="order.Name" />
+                <ValidationMessage For="(() => order.Name)"></ValidationMessage>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="state">State</label>
-                <div>
-                    <InputText class="form-control" id="state" @bind-Value="order.State" />
-                    <ValidationMessage For="(() => order.State)"></ValidationMessage>
-                </div>
+                <InputText class="form-control" id="state" @bind-Value="order.State" />
+                <ValidationMessage For="(() => order.State)"></ValidationMessage>
             </div>
+        </div>
+
+        <div class="col-md-12 mt-3">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-secondary" type="button" @onclick="clear">Clear</button>
         </div>
 
         <div class="row">
@@ -44,7 +47,7 @@
             {
                 var windowIndex = i;
                 var window = order.Windows[i];
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group form-inline">
@@ -124,11 +127,6 @@
                 </div>
             }
         </div>
-    </div>
-
-    <div class="form-group mt-3">
-        <button class="btn btn-primary" type="submit">Save</button>
-        <button class="btn btn-secondary" type="button" @onclick="clear">Clear</button>
     </div>
 
 </EditForm>
