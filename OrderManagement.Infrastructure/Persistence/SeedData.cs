@@ -22,8 +22,8 @@ namespace OrderManagement.Infrastructure.Persistence
                 {
                     new Order
                     {
-                        Name = "William",
-                        State = "Shakespeare",
+                        Name = "New York Building 1",
+                        State = "NY",
                         Windows = new List<Window>
                         {
                             new Window
@@ -69,9 +69,9 @@ namespace OrderManagement.Infrastructure.Persistence
                             },
                             new Window
                             {
-                                Name = "C Zone 5",
-                                QuantityOfWindows = 2,
-                                TotalSubElements = 1,
+                                Name = "OHF",
+                                QuantityOfWindows = 10,
+                                TotalSubElements = 2,
                                 SubElements = new List<SubElement>
                                 {
                                     new SubElement { Element = 1, Type = "Window", Width = 1500, Height = 2000 },
