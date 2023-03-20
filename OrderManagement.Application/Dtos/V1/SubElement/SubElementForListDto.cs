@@ -8,9 +8,9 @@ namespace OrderManagement.Application.Dtos.V1.SubElement
 
         public string Type { get; set; }
 
-        public float Width { get; set; }
+        public int Width { get; set; }
 
-        public float Height { get; set; }
+        public int Height { get; set; }
 
         public int WindowId { get; set; }
 

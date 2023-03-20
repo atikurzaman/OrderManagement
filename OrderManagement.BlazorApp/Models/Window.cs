@@ -9,11 +9,11 @@ namespace OrderManagement.BlazorApp.Models
         public string Name { get; set; } = String.Empty;
 
         [Required]
-        [Range(0, 1000, ErrorMessage = "Quantity of windows must be between 0 and 1000.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Quantity of windows must be between {1} and {2}.")]
         public int QuantityOfWindows { get; set; }
 
         [Required]
-        [Range(0, 1000, ErrorMessage = "Total sub elements must be between 0 and 1000.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Total sub elements must be between {1} and {2}.")]
         public int TotalSubElements { get; set; }
 
         [Required]
