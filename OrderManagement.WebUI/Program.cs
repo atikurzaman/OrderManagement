@@ -1,6 +1,7 @@
 using OrderManagement.Application;
 using OrderManagement.Infrastructure;
 using OrderManagement.Infrastructure.Persistence;
+using OrderManagement.WebUI.MiddleWare;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,11 @@ builder.Services.AddCors(o =>
         .AllowAnyHeader());
 });
 
-
 var app = builder.Build();
 
 SeedData.PopulateDb(app);
+
+app.UseMiddleware<ExceptionMiddle>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
