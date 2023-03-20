@@ -15,11 +15,7 @@ namespace OrderManagement.Infrastructure.Persistence.Configurations
         {
             builder.Property(o => o.Name).HasMaxLength(256).IsRequired();
             builder.Property(o => o.QuantityOfWindows).IsRequired();
-            builder.Property(o => o.TotalSubElements).IsRequired();
-
-            //builder.HasOne<Order>()
-            //    .WithMany(w => w.Windows)
-            //    .HasForeignKey(o => o.OrderId);
+            builder.Property(o => o.TotalSubElements).IsRequired();            
         }
 
     }

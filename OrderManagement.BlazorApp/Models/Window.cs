@@ -13,7 +13,7 @@ namespace OrderManagement.BlazorApp.Models
         public int QuantityOfWindows { get; set; }
 
         [Required]
-        [Range(0, 100, ErrorMessage = "Total sub elements must be between 0 and 100.")]
+        [Range(0, 1000, ErrorMessage = "Total sub elements must be between 0 and 1000.")]
         public int TotalSubElements { get; set; }
 
         [Required]

@@ -11,11 +11,7 @@ namespace OrderManagement.Infrastructure.Persistence.Configurations
             builder.Property(o => o.Element).IsRequired();
             builder.Property(o => o.Type).HasMaxLength(256).IsRequired();
             builder.Property(o => o.Width).IsRequired();
-            builder.Property(o => o.Height).IsRequired();
-
-            //builder.HasOne<Window>()
-            //    .WithMany(s => s.SubElements)
-            //    .HasForeignKey(w => w.WindowId);
+            builder.Property(o => o.Height).IsRequired();            
         }
 
     }
